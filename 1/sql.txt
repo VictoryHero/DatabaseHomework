@@ -1,0 +1,81 @@
+create database EDUC on 
+(
+name=student_data,
+filename='D:\sql_data\student.mdf',
+size=10,
+maxsize=50,
+filegrowth=5%
+)
+log on
+(
+name=student_log,
+filename='D:\sql_data\student_log.ldf',
+size=2,
+maxsize=5,
+filegrowth=1);
+
+
+create table student
+(
+sno char(8) PRIMARY KEY,
+sname char(8) NOT NULL,
+sex char(2),
+native char(20),
+birthday smalldatetime,
+dno char(6),
+spno char(8),
+classno char(4),
+entime smalldatetime,
+home varchar(40),
+tel varchar(40)
+);
+
+create table course
+(
+cno char(10) PRIMARY KEY,
+spno char(6),
+cname char(10) NOT NULL,
+ctno tinyint,
+experiment tinyint,
+lecture tinyint,
+semester tinyint,
+credit tinyint
+);
+
+create table student_course
+(
+sno char(8) NOT	NULL,
+tcid smallint NOT NULL,
+score tinyint,
+PRIMARY KEY(sno,tcid)
+);
+
+
+create table teacher
+(
+tno char(8) NOT NULL PRIMARY KEY,
+tname char(8) NOT NULL,
+sex char(2),
+birthday smalldatetime,
+dno char(6),
+pno tinyint,
+home varchar(40),
+zipcode char(6),
+tel varchar(40),
+email varchar(40) 
+);
+
+
+create table teacher_course
+(
+tcid smallint NOT NULL PRIMARY KEY,
+tno char(8),
+spno char(8),
+classno char(4),
+cno char(10) NOT NULL,
+semester tinyint,
+schoolyear char(10),
+classtime varchar(40),
+classroom varchar(40),
+weektime tinyint
+);
